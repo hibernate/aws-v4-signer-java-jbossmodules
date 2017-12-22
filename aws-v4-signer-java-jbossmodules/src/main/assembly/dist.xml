@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <id>dist</id>
+    <formats>
+        <format>zip</format>
+        <format>dir</format> <!-- For ease of debugging only -->
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <baseDirectory>/</baseDirectory>
+
+    <files>
+        <file>
+            <source>${module.xml.basedir}/aws-v4-signer-java/module.xml</source>
+            <outputDirectory>/uk/co/lucasweb/aws-v4-signer-java/${version.aws-v4-signer-java}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>${module.xml.basedir}/main_alias/module.xml</source>
+            <outputDirectory>/uk/co/lucasweb/aws-v4-signer-java/${slot.simple.id}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+    </files>
+
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>uk/co/lucasweb/aws-v4-signer-java/${version.aws-v4-signer-java}</outputDirectory>
+            <useTransitiveFiltering>false</useTransitiveFiltering>
+            <unpack>false</unpack>
+            <includes>
+                <include>uk.co.lucasweb:aws-v4-signer-java</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>
