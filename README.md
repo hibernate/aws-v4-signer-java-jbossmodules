@@ -28,7 +28,7 @@ This might be useful to address problems in the package structure, or any other 
 to release a new version of these modules containing the same AWS v4 Signer version as a previously
 released copy of these modules.
 
-An example version could be `1.3.0.wildfly02` to contain AWS v4 Signer version `1.3`.
+An example version could be `1.3.0.hibernate02` to contain AWS v4 Signer version `1.3`.
 
 ## Usage
 
@@ -75,4 +75,16 @@ This will make them available as an opt-in dependency to any application deploye
 To enable the dependency there are various options, documented in
 [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY/Class+Loading+in+WildFly).
 
+## How to Release
+
+    mvn release:prepare
+    mvn release:perform
+
+This will produce two local commits and a local tag, then upload the artifacts to a staging repository on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome).
+
+If it all works fine, don't forget to:
+
+ * release the staging repository on Nexus
+ * push the commits
+ * push the tag
 
