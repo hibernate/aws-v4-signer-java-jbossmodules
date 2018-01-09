@@ -27,6 +27,7 @@
             <outputDirectory>uk/co/lucasweb/aws-v4-signer-java/${version.aws-v4-signer-java}</outputDirectory>
             <useTransitiveFiltering>false</useTransitiveFiltering>
             <unpack>false</unpack>
+            <scope>provided</scope>
             <includes>
                 <include>uk.co.lucasweb:aws-v4-signer-java</include>
             </includes>
