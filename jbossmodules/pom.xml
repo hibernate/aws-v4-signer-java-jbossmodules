@@ -17,25 +17,85 @@
     <description>Aws-v4-signer-java JBoss Modules packaging</description>
 
     <properties>
-        <module.xml.basedir>src/main/modules</module.xml.basedir>
+        <featurepack.dir>${project.build.directory}/feature-pack/src/main/resources</featurepack.dir>
+        <template.dir>${featurepack.dir}/modules/</template.dir>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>uk.co.lucasweb</groupId>
             <artifactId>aws-v4-signer-java</artifactId>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.core</groupId>
+            <artifactId>wildfly-core-feature-pack</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>gen-module-aws-v4-signer-java</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${template.dir}/system/layers/base/uk/co/lucasweb/aws-v4-signer-java/${slot.full.id}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/modules/aws-v4-signer-java</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gen-feature-pack-buildfile</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${featurepack.dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/feature-pack-def</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.build</groupId>
+                <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>feature-pack-build</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <config-file>feature-pack-template.xml</config-file>
+                            <config-dir>${featurepack.dir}</config-dir>
+                            <resourcesDir>/</resourcesDir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <finalName>${project.artifactId}-${project.version}</finalName>
                     <descriptors>
-                        <descriptor>${basedir}/src/main/assembly/dist.xml</descriptor>
+                        <descriptor>${basedir}/assembly.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>

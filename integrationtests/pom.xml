@@ -14,7 +14,7 @@
 
     <properties>
         <!--
-        we disable the enforcer plugin for this jbossmodules as it is not possible to maintain the dependency convergence
+        we disable the enforcer plugin for this module as it is not possible to maintain the dependency convergence
         here due to dependency conflicts with specific versions of WildFly
         -->
         <enforcer.skip>true</enforcer.skip>
@@ -31,7 +31,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Imports compatible versions for each Arquillian jbossmodules -->
+            <!-- Imports compatible versions for each Arquillian module -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -104,35 +104,18 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <groupId>org.wildfly.build</groupId>
+                <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>unpack</id>
-                        <phase>pre-integration-test</phase>
+                        <id>server-provisioning</id>
                         <goals>
-                            <goal>unpack</goal>
+                            <goal>build</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.wildfly</groupId>
-                                    <artifactId>wildfly-servlet-dist</artifactId>
-                                    <version>${version.wildfly}</version>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>aws-v4-signer-java-jbossmodules</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <classifier>dist</classifier>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/wildfly-servlet-${version.wildfly}/modules
-                                    </outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
+                            <config-file>server-provisioning.xml</config-file>
+                            <server-name>minimal-wildfly-with-aws-v4-signer-java</server-name>
                         </configuration>
                     </execution>
                 </executions>

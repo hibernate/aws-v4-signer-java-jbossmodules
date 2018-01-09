@@ -1,0 +1,6 @@
+<build xmlns="urn:wildfly:feature-pack-build:1.1">
+    <dependencies>
+        <!-- Necessary for the javax.api dependency -->
+        <artifact name="org.wildfly.core:wildfly-core-feature-pack"/>
+    </dependencies>
+</build>
