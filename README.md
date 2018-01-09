@@ -30,6 +30,13 @@ released copy of these modules.
 
 An example version could be `1.3.0.hibernate02` to contain AWS v4 Signer version `1.3`.
 
+## Download
+
+Released module ZIPs are available on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome)
+and Maven Central as `org.hibernate.aws-v4-signer-java-jbossmodules:aws-v4-signer-java-jbossmodules:<version>:dist:zip`.
+
+Here is a link to the [parent directory containing all releases](https://repository.jboss.org/nexus/content/groups/public/org/hibernate/aws-v4-signer-java-jbossmodules/aws-v4-signer-java-jbossmodules/).
+
 ## Usage
 
 Extract the produced module zip in the `/modules` directory of your WildFly distribution.
