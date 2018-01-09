@@ -8,7 +8,7 @@
     <url>https://github.com/hibernate/aws-v4-signer-java-jbossmodules</url>
     <description>Distribution of aws-v4-signer-java packaged into JBoss Modules</description>
     <packaging>pom</packaging>
-    <version>1.3.0.hibernate02</version>
+    <version>1.3.0-SNAPSHOT</version>
     <inceptionYear>2017</inceptionYear>
 
     <properties>
@@ -30,7 +30,7 @@
         <connection>scm:git:git://github.com/hibernate/aws-v4-signer-java-jbossmodules.git</connection>
         <developerConnection>scm:git:git@github.com:hibernate/aws-v4-signer-java-jbossmodules.git</developerConnection>
         <url>http://github.com/hibernate/aws-v4-signer-java-jbossmodules</url>
-        <tag>1.3.0.hibernate02</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
