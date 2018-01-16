@@ -194,8 +194,8 @@
     </build>
 
     <modules>
-        <module>aws-v4-signer-java-jbossmodules</module>
-        <module>aws-v4-signer-java-jbossmodules-integrationtests</module>
+        <module>jbossmodules</module>
+        <module>integrationtests</module>
     </modules>
 
 </project>
