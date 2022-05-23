@@ -1,3 +1,7 @@
+**This repository is no longer maintained.**
+
+Newer versions of Hibernate projects use the AWS SDK instead of AWS v4 Signer for Java.
+
 AWS v4 Signer for Java JBoss Module as WildFly feature pack
 ============================================================
 
